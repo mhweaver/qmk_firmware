@@ -26,10 +26,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |----------+------+------+------+------+------|  L1  |           |  L1  |------+------+------+-------+------+--------|
  * | LShift   |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .   |   /  | RShift |
  * `----------+------+------+------+------+-------------'           `-------------+------+------+-------+------+--------'
- *   |Ctrl/Esc| LGUI | LALT | Left | Right|                                       | Left | Down |   Up  | Right| RGUI |
- *   `------------------------------------'                                       `-----------------------------------'
+ *   |Ctrl/Esc| LGUI | LALT | Left | Right|                                       | Left | Down |   Up  | Right|Ctrl/Esc|
+ *   `------------------------------------'                                       `-------------------------------------'
  *                                        ,-------------.       ,---------------.
- *                                        | Del  | Home |       | PgUp |Ctrl/Esc|
+ *                                        | Del  | Home |       | PgUp | Insert |
  *                                 ,------|------|------|       |------+--------+------.
  *                                 |      |      | End  |       | PgDn |        |      |
  *                                 | Space|Backsp|------|       |------| Enter  |Space |
@@ -53,8 +53,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
              KC_RBRC,     KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,             KC_BSLS,
                           KC_H,   KC_J,   KC_K,   KC_L,   LT(MDIA, KC_SCLN),KC_QUOT,
              MO(SYMB),    KC_N,   KC_M,   KC_COMM,KC_DOT, KC_SLSH,          KC_RSPC,
-                                  KC_LEFT,KC_DOWN,KC_UP,  KC_RGHT,          KC_RGUI,
-             KC_PGUP,          CTL_T(KC_ESC),
+                                  KC_LEFT,KC_DOWN,KC_UP,  KC_RGHT,          CTL_T(KC_ESC),
+             KC_PGUP,          KC_INS,
              KC_PGDN,
              LGUI(KC_E),KC_ENT,KC_SPC
     ),
