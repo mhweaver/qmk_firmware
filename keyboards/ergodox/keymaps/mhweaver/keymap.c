@@ -3,6 +3,8 @@
 #include "action_layer.h"
 #include "version.h"
 
+#define NO_XSHIFT
+
 #define BASE 0 // default layer
 #define SYMB 1 // symbols
 #define MDIA 2 // media keys
@@ -165,29 +167,80 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
     return MACRO_NONE;
 };
 
+bool lshifted = false;
+bool rshifted = false;
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     // dynamically generate these.
-    case EPRM:
-      if (record->event.pressed) {
-        eeconfig_init();
-      }
-      return false;
-      break;
-    case VRSN:
-      if (record->event.pressed) {
-        SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
-      }
-      return false;
-      break;
-    case RGB_SLD:
-      if (record->event.pressed) {
-        #ifdef RGBLIGHT_ENABLE
-          rgblight_mode(1);
-        #endif
-      }
-      return false;
-      break;
+    //case EPRM:
+    //  if (record->event.pressed) {
+    //    eeconfig_init();
+    //  }
+    //  return false;
+    //  break;
+    //case VRSN:
+    //  if (record->event.pressed) {
+    //    SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
+    //  }
+    //  return false;
+    //  break;
+    //case RGB_SLD:
+    //  if (record->event.pressed) {
+    //    #ifdef RGBLIGHT_ENABLE
+    //      rgblight_mode(1);
+    //    #endif
+    //  }
+    //  return false;
+    //  break;
+#ifdef NO_XSHIFT
+	case KC_LSPO:
+		lshifted = record->event.pressed;
+		break;
+	case KC_RSPC:
+		rshifted = record->event.pressed;
+		break;
+	case KC_MINS:
+	case KC_Y:
+	case KC_U:
+	case KC_I:
+	case KC_O:
+	case KC_P:
+	case KC_BSLS:
+	case KC_H:
+	case KC_J:
+	case KC_K:
+	case KC_L:
+	case KC_SCLN:
+	case KC_QUOT:
+	case KC_N:
+	case KC_M:
+	case KC_COMM:
+	case KC_DOT:
+	case KC_SLSH:
+		if (rshifted && !lshifted)
+			return false;
+		break;
+
+	case KC_Q:
+	case KC_W:
+	case KC_E:
+	case KC_R:
+	case KC_T:
+	case KC_GRV:
+	case KC_A:
+	case KC_S:
+	case KC_D:
+	case KC_F:
+	case KC_G:
+	case KC_Z:
+	case KC_X:
+	case KC_C:
+	case KC_V:
+	case KC_B:
+		if (lshifted && !rshifted)
+			return false;
+		break;
+#endif
   }
   return true;
 }
