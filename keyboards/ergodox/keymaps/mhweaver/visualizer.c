@@ -16,8 +16,7 @@
 #include "serial_link/system/serial_link.h"
 
 static const char* welcome_text = "Ergodox Infinity";
-static const char* revision_text = "QMK Rev: "; //GIT_REV;
-static const char* keymap_text = "Keymap: "; //QMK_KEYMAP;
+static const char* keymap_text = "mhweaver keymap";
 static const char* suspend_text = "ZZZZzzzz....";
 
 static const uint8_t default_brightness_level = 0x50;
@@ -29,7 +28,7 @@ bool display_welcome(keyframe_animation_t* animation, visualizer_state_t* state)
 
     gdispClear(White);
     gdispDrawString(0, 3, welcome_text, state->font_dejavusansbold12, Black);
-    gdispDrawString(0, 15, revision_text, state->font_dejavusansbold12, Black);
+    gdispDrawString(0, 15, keymap_text, state->font_dejavusansbold12, Black);
     gdispFlush(); 
 
     return false;
@@ -40,7 +39,6 @@ bool display_layer(keyframe_animation_t* animation, visualizer_state_t* state) {
 
     gdispClear(White);
     gdispDrawString(0, 3, state->layer_text, state->font_dejavusansbold12, Black);
-    gdispDrawString(0, 15,keymap_text, state->font_dejavusansbold12, Black);
     gdispFlush(); 
 
     return false;
@@ -65,22 +63,33 @@ static keyframe_animation_t startup_animation = {
 
 // The color animation animates the LCD color when you change layers
 static keyframe_animation_t color_animation = {
-    .num_frames = 2,
+    //.num_frames = 2,
+    //.loop = false,
+    //// Note that there's a 200 ms no-operation frame,
+    //// this prevents the color from changing when activating the layer
+    //// momentarily
+    //.frame_lengths = {MS2ST(200), MS2ST(500)},
+    //.frame_functions = {keyframe_no_operation, keyframe_animate_backlight_color},
+    .num_frames = 1,
     .loop = false,
     // Note that there's a 200 ms no-operation frame,
     // this prevents the color from changing when activating the layer
     // momentarily
-    .frame_lengths = {MS2ST(200), MS2ST(500)},
-    .frame_functions = {keyframe_no_operation, keyframe_animate_backlight_color},
+    .frame_lengths = {MS2ST(1000)},
+    .frame_functions = {keyframe_animate_backlight_color},
 };
 
 // The LCD animation alternates between the layer name display and a
 // bitmap that displays all active layers
 static keyframe_animation_t lcd_animation = {
-    .num_frames = 2,
-    .loop = true,
-    .frame_lengths = {MS2ST(2000), MS2ST(3000)},
-    .frame_functions = {display_welcome, display_layer},
+    //.num_frames = 2,
+    //.loop = true,
+    //.frame_lengths = {MS2ST(1000), MS2ST(3000)},
+    //.frame_functions = {display_welcome, display_layer},
+    .num_frames = 1,
+    .loop = false,
+    .frame_lengths = {MS2ST(1000)},
+    .frame_functions = {display_layer},
 };
 
 static keyframe_animation_t suspend_animation = {
