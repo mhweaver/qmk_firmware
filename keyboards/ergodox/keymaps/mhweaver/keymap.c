@@ -199,47 +199,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	case KC_RSPC:
 		rshifted = record->event.pressed;
 		break;
-	case KC_MINS:
-	case KC_Y:
-	case KC_U:
-	case KC_I:
-	case KC_O:
-	case KC_P:
-	case KC_BSLS:
-	case KC_H:
-	case KC_J:
-	case KC_K:
-	case KC_L:
-	case KC_SCLN:
-	case KC_QUOT:
-	case KC_N:
-	case KC_M:
-	case KC_COMM:
-	case KC_DOT:
-	case KC_SLSH:
-		if (rshifted && !lshifted)
-			return false;
-		break;
-
-	case KC_Q:
-	case KC_W:
-	case KC_E:
-	case KC_R:
-	case KC_T:
-	case KC_GRV:
-	case KC_A:
-	case KC_S:
-	case KC_D:
-	case KC_F:
-	case KC_G:
-	case KC_Z:
-	case KC_X:
-	case KC_C:
-	case KC_V:
-	case KC_B:
-		if (lshifted && !rshifted)
-			return false;
-		break;
+  }
+  if (lshifted ^ rshifted) {
+	uint8_t col = record->event.key.col;
+	uint8_t row = record->event.key.row;
+	if (col >= 1 && col <= 3) {
+		if (lshifted && row >= 3 && row <= 7)
+			return false; // disable left
+		else if (rshifted && row >= 12 && row <= 16)
+			return false; // disable right
+	}
 #endif
   }
   return true;
