@@ -243,9 +243,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 		break;
   }
   if (lshifted ^ rshifted) {
-	uint8_t col = record->event.key.col;
-	uint8_t row = record->event.key.row;
-	if (col >= 1 && col <= 3) {
+	if (record->event.key.col & 0x3) { // col & 3 = col in [1,2,3]
+		uint8_t row = record->event.key.row;
 		if (lshifted && row >= 3 && row <= 7)
 			return false; // disable left
 		else if (rshifted && row >= 12 && row <= 16)
