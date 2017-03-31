@@ -17,15 +17,20 @@ enum custom_keycodes {
   RGB_SLD
 };
 
+enum tapdance_ids {
+	TD_NOOP_ENTER = 0,
+	TD_ENTER_NOOP
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
  *
  * ,----------------------------------------------------.           ,---------------------------------------------------.
  * |   =      |   1  |   2  |   3  |   4  |   5  |L2 Tog|           |L3 Tog|   6  |   7  |   8  |   9   |   0  |   -    |
  * |----------+------+------+------+------+-------------|           |------+------+------+------+-------+------+--------|
- * |   Tab    |   Q  |   W  |   E  |   R  |   T  |   [  |           |  ]   |   Y  |   U  |   I  |   O   |   P  |   \    |
+ * |   `/L3   |   Q  |   W  |   E  |   R  |   T  |   [  |           |  ]   |   Y  |   U  |   I  |   O   |   P  |   \    |
  * |----------+------+------+------+------+------|      |           |      |------+------+------+-------+------+--------|
- * |   `/L3   |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L   |   ;  | ' / L3 |
+ * |Backspace |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L   |   ;  | ' / L3 |
  * |----------+------+------+------+------+------|  L2  |           |  L2  |------+------+------+-------+------+--------|
  * | LShift   |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .   |   /  | RShift |
  * `----------+------+------+------+------+-------------'           `-------------+------+------+-------+------+--------'
@@ -35,8 +40,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                        | Del  | Home |       | PgUp | Insert |
  *                                 ,------|------|------|       |------+--------+------.
  *                                 |      |      | End  |       | PgDn |        |      |
- *                                 | Space|Backsp|------|       |------| Enter  |      |
- *                                 |      |ace   |LeftM |       |RightM|        |      |
+ *                                 | Space|      |------|       |------|  Tab   |Enter |
+ *                                 |      |      |LeftM |       |RightM|        |      |
  *                                 `--------------------'       `----------------------'
  */
 // If it accepts an argument (i.e, is a function), it doesn't need KC_.
@@ -44,13 +49,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [QWERTY] = KEYMAP(  // layer 0 : default
         // left hand
         KC_EQL,           KC_1,   KC_2,   KC_3,   KC_4,   KC_5,   TG(COLEMAK),
-        KC_TAB,           KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,   KC_LBRC,
-        LT(MDIA, KC_GRV), KC_A,   KC_S,   KC_D,   KC_F,   KC_G,
+        LT(MDIA, KC_GRV), KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,   KC_LBRC,
+        KC_BSPC,          KC_A,   KC_S,   KC_D,   KC_F,   KC_G,
         KC_LSPO,          KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   MO(SYMB),
         CTL_T(KC_ESC),    KC_LGUI,KC_LALT,KC_LEFT,KC_RGHT,
                                                KC_DELT,       KC_HOME,
                                                               KC_END,
-                                               KC_SPC,KC_BSPC,LGUI(KC_W),
+                                               KC_SPC,  KC_NO,LGUI(KC_W),
         // right hand
              TG(MDIA),    KC_6,   KC_7,   KC_8,   KC_9,   KC_0,     KC_MINS,
              KC_RBRC,     KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,     KC_BSLS,
@@ -59,7 +64,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                   KC_LEFT,KC_DOWN,KC_UP,  KC_RGHT,  CTL_T(KC_ESC),
              KC_PGUP,          KC_INS,
              KC_PGDN,
-             LGUI(KC_E),KC_ENT,KC_NO
+             LGUI(KC_E),KC_TAB,KC_ENT
     ),
 /* Keymap 1: Colemak layer
  *
@@ -189,6 +194,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 const uint16_t PROGMEM fn_actions[] = {
     [1] = ACTION_LAYER_TAP_TOGGLE(SYMB)                // FN1 - Momentary Layer 1 (Symbols)
+};
+
+//Tap Dance Definitions
+qk_tap_dance_action_t tap_dance_actions[] = {
+  //Tap once for Esc, twice for Caps Lock
+  [TD_ENTER_NOOP] = ACTION_TAP_DANCE_DOUBLE(KC_ENT, KC_NO),
+  [TD_NOOP_ENTER] = ACTION_TAP_DANCE_DOUBLE(KC_NO, KC_ENT),
+// Other declarations would go here, separated by commas, if you have them
 };
 
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
