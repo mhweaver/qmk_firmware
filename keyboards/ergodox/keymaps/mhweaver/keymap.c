@@ -91,7 +91,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // left hand
         KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,
         KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_F,      KC_P,      KC_G,      KC_TRNS,
-        KC_TRNS,   KC_TRNS,   KC_R,      KC_S,   KC_T,      KC_D,
+        KC_TRNS,   KC_TRNS,   KC_R,      KC_S,      KC_T,      KC_D,
         KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,
           KC_TRNS, KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,
                                          KC_TRNS,   KC_TRNS,
