@@ -44,7 +44,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 |      |      |LeftM |       |RightM|        |      |
  *                                 `--------------------'       `----------------------'
  */
-[COLEMAK] = KEYMAP(  // layer 1 : colemak
+[COLEMAK] = KEYMAP(  // layer 0 : colemak
         // left hand
         KC_EQL,           KC_1,    KC_2,    KC_3,    KC_4,    KC_5, TT(QWERTY),
         LT(MDIA, KC_GRV), KC_Q,    KC_W,    KC_F,    KC_P,    KC_B, KC_LBRC,
@@ -87,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 // If it accepts an argument (i.e, is a function), it doesn't need KC_.
 // Otherwise, it needs KC_*
-[QWERTY] = KEYMAP(  // layer 0 : default
+[QWERTY] = KEYMAP(  // layer 1 : default
         // left hand
         KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
         KC_TRNS,   KC_TRNS, KC_TRNS, KC_E,    KC_R,    KC_T,    KC_TRNS,
