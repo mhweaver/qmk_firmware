@@ -5,8 +5,8 @@
 
 #define NO_XSHIFT
 
-#define QWERTY 0 // default layer
-#define COLEMAK 1 // default layer
+#define COLEMAK 0 // default layer
+#define QWERTY 1 // default layer
 #define SYMB 2 // symbols
 #define MDIA 3 // media keys
 
@@ -23,62 +23,60 @@ enum tapdance_ids {
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-/* Keymap 0: Basic layer
+/* Keymap 0: Colemak layer
  *
  * ,----------------------------------------------------.           ,---------------------------------------------------.
- * |   =      |   1  |   2  |   3  |   4  |   5  |L2 Tog|           |L3 Tog|   6  |   7  |   8  |   9   |   0  |   -    |
+ * |   =      |   1  |   2  |   3  |   4  |   5  |L1 Tog|           |L3 Tog|   6  |   7  |   8  |   9   |   0  |   -    |
  * |----------+------+------+------+------+-------------|           |------+------+------+------+-------+------+--------|
- * |   `/L3   |   Q  |   W  |   E  |   R  |   T  |   [  |           |  ]   |   Y  |   U  |   I  |   O   |   P  |   \    |
+ * |   `/L3   |   Q  |   W  |   F  |   P  |   B  |   [  |           |  ]   |   J  |   L  |   U  |   Y   |   ;  |   \    |
  * |----------+------+------+------+------+------|      |           |      |------+------+------+-------+------+--------|
- * |Backspace |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L   |   ;  | ' / L3 |
+ * |Backspace |   A  |   R  |   S  |   T  |   G  |------|           |------|   M  |   N  |   E  |   I   |   O  | ' / L3 |
  * |----------+------+------+------+------+------|  L2  |           |  L2  |------+------+------+-------+------+--------|
- * | LShift   |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .   |   /  | RShift |
+ * | LShift   |   Z  |   X  |   C  |   D  |   V  |      |           |      |   K  |   H  |   ,  |   .   |   /  | RShift |
  * `----------+------+------+------+------+-------------'           `-------------+------+------+-------+------+--------'
  *   |Ctrl/Esc| LGUI | LALT | Left | Right|                                       | Left | Down |   Up  | Right|Ctrl/Esc|
  *   `------------------------------------'                                       `-------------------------------------'
  *                                        ,-------------.       ,---------------.
  *                                        | Del  | Home |       | PgUp | Insert |
  *                                 ,------|------|------|       |------+--------+------.
- *                                 |      |Bacesp| End  |       | PgDn |        |      |
+ *                                 |      |Backsp| End  |       | PgDn |        |      |
  *                                 | Space|ace   |------|       |------|  Tab   |Enter |
  *                                 |      |      |LeftM |       |RightM|        |      |
  *                                 `--------------------'       `----------------------'
  */
-// If it accepts an argument (i.e, is a function), it doesn't need KC_.
-// Otherwise, it needs KC_*
-[QWERTY] = KEYMAP(  // layer 0 : default
+[COLEMAK] = KEYMAP(  // layer 1 : colemak
         // left hand
-        KC_EQL,           KC_1,   KC_2,   KC_3,   KC_4,   KC_5,   TG(COLEMAK),
-        LT(MDIA, KC_GRV), KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,   KC_LBRC,
-        KC_BSPC,          KC_A,   KC_S,   KC_D,   KC_F,   KC_G,
-        KC_LSPO,          KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   MO(SYMB),
-        CTL_T(KC_ESC),    KC_LGUI,KC_LALT,KC_LEFT,KC_RGHT,
-                                               KC_DELT,       KC_HOME,
-                                                              KC_END,
-															  KC_SPC,  KC_BSPC,LGUI(KC_W),
-															  // right hand
-             TG(MDIA),    KC_6,   KC_7,   KC_8,   KC_9,   KC_0,     KC_MINS,
-             KC_RBRC,     KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,     KC_BSLS,
-                          KC_H,   KC_J,   KC_K,   KC_L,   KC_SCLN,  LT(MDIA, KC_QUOT),
-             MO(SYMB),    KC_N,   KC_M,   KC_COMM,KC_DOT, KC_SLSH,  KC_RSPC,
-                                  KC_LEFT,KC_DOWN,KC_UP,  KC_RGHT,  CTL_T(KC_ESC),
+        KC_EQL,           KC_1,    KC_2,    KC_3,    KC_4,    KC_5, TG(QWERTY),
+        LT(MDIA, KC_GRV), KC_Q,    KC_W,    KC_F,    KC_P,    KC_B, KC_LBRC,
+        KC_BSPC,          KC_A,    KC_R,    KC_S,    KC_T,    KC_G,
+        KC_LSPO,          KC_Z,    KC_X,    KC_C,    KC_D,    KC_V, MO(SYMB),
+          CTL_T(KC_ESC),  KC_LGUI, KC_LALT, KC_LEFT, KC_RGHT,
+							                                           KC_DELT, KC_HOME,
+    						                                                    KC_END,
+															   KC_SPC, KC_BSPC, LGUI(KC_W),
+        // right hand
+             TG(MDIA), KC_6, KC_7, KC_8,    KC_9,   KC_0,     KC_MINS,
+             KC_RBRC,  KC_J, KC_L, KC_U,    KC_Y,   KC_SCLN,  KC_BSLS,
+                       KC_M, KC_N, KC_E,    KC_I,   KC_O,     LT(MDIA, KC_QUOT),
+             MO(SYMB), KC_K, KC_H, KC_COMM, KC_DOT, KC_SLSH,  KC_RSPC,
+                                   KC_LEFT,KC_DOWN,KC_UP,  KC_RGHT,  CTL_T(KC_ESC),
              KC_PGUP,          KC_INS,
              KC_PGDN,
              LGUI(KC_E),KC_TAB,KC_ENT
     ),
-/* Keymap 1: Colemak layer
+/* Keymap 1: Basic layer
  *
  * ,----------------------------------------------------.           ,---------------------------------------------------.
  * |          |      |      |      |      |      |      |           |      |      |      |      |       |      |        |
  * |----------+------+------+------+------+-------------|           |------+------+------+------+-------+------+--------|
- * |          |      |      |   F  |   P  |   B  |      |           |      |   J  |   L  |   U  |   Y   |   ;  |        |
+ * |          |      |      |   E  |   R  |   T  |      |           |      |   Y  |   U  |   I  |   O   |   P  |        |
  * |----------+------+------+------+------+------|      |           |      |------+------+------+-------+------+--------|
- * |          |      |   R  |   S  |   T  |   G  |------|           |------|   M  |   N  |   E  |   I   |   O  |        |
+ * |          |      |   S  |   D  |   F  |      |------|           |------|   H  |   J  |   K  |   L   |   ;  |        |
  * |----------+------+------+------+------+------|      |           |      |------+------+------+-------+------+--------|
- * |          |      |      |      |   D  |   V  |      |           |      |   K  |   H  |      |       |      |        |
+ * |          |      |      |      |   V  |   B  |      |           |      |   N  |   M  |      |       |      |        |
  * `----------+------+------+------+------+-------------'           `-------------+------+------+-------+------+--------'
- *   |        |      |      |      |      |                                       |      |      |       |      |        |
- *   `------------------------------------'                                       `-------------------------------------'
+ *   |        |      |      |      |      |                                       |      |      |       |      |      |
+ *   `------------------------------------'                                       `-----------------------------------'
  *                                        ,-------------.       ,---------------.
  *                                        |      |      |       |      |        |
  *                                 ,------|------|------|       |------+--------+------.
@@ -87,22 +85,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 |      |      |      |       |      |        |      |
  *                                 `--------------------'       `----------------------'
  */
-[COLEMAK] = KEYMAP(  // layer 1 : colemak
+// If it accepts an argument (i.e, is a function), it doesn't need KC_.
+// Otherwise, it needs KC_*
+[QWERTY] = KEYMAP(  // layer 0 : default
         // left hand
-        KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,
-        KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_F,      KC_P,      KC_B,      KC_TRNS,
-        KC_TRNS,   KC_TRNS,   KC_R,      KC_S,      KC_T,      KC_G,
-        KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_D,      KC_V,      KC_TRNS,
-          KC_TRNS, KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,
-                                         KC_TRNS,   KC_TRNS,
-                                                    KC_TRNS,
-                                 KC_TRNS,KC_TRNS,   KC_TRNS,
-        // right hand
-             KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,
-             KC_TRNS,   KC_J,      KC_L,      KC_U,      KC_Y,      KC_SCLN,   KC_TRNS,
-                        KC_M,      KC_N,      KC_E,      KC_I,      KC_O,      KC_TRNS,
-             KC_TRNS,   KC_K,      KC_H,      KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,
-                                   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,  KC_TRNS,
+        KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+        KC_TRNS,   KC_TRNS, KC_TRNS, KC_E,    KC_R,    KC_T,    KC_TRNS,
+        KC_TRNS,   KC_TRNS, KC_S,    KC_D,    KC_F,    KC_TRNS,
+        KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS, KC_V,    KC_B,    KC_TRNS,
+          KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+														           KC_TRNS, KC_TRNS,
+                               							                    KC_TRNS,
+                               							  KC_TRNS, KC_TRNS, KC_TRNS,
+				  // right hand
+             KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,
+             KC_TRNS,     KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,     KC_TRNS,
+                          KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,  KC_TRNS,
+             KC_TRNS,     KC_N,    KC_M,    KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,
+                                   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
              KC_TRNS,        KC_TRNS,
              KC_TRNS,
              KC_TRNS,KC_TRNS,KC_TRNS
