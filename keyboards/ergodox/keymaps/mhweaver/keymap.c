@@ -46,7 +46,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [COLEMAK] = KEYMAP(  // layer 1 : colemak
         // left hand
-        KC_EQL,           KC_1,    KC_2,    KC_3,    KC_4,    KC_5, TG(QWERTY),
+        KC_EQL,           KC_1,    KC_2,    KC_3,    KC_4,    KC_5, TT(QWERTY),
         LT(MDIA, KC_GRV), KC_Q,    KC_W,    KC_F,    KC_P,    KC_B, KC_LBRC,
         KC_BSPC,          KC_A,    KC_R,    KC_S,    KC_T,    KC_G,
         KC_LSPO,          KC_Z,    KC_X,    KC_C,    KC_D,    KC_V, MO(SYMB),
