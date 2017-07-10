@@ -3,7 +3,7 @@
 #include "action_layer.h"
 #include "version.h"
 
-#define NO_XSHIFT
+//#define NO_XSHIFT
 
 #define COLEMAK 0 // default layer
 #define QWERTY 1 // default layer
