@@ -136,18 +136,18 @@ static uint8_t get_led_index_master(visualizer_user_data_t* user_data) {
     return 0;
 }
 
-static uint8_t get_led_index_slave(visualizer_user_data_t* user_data) {
-    uint8_t master_index = get_led_index_master(user_data);
-    if (master_index!=0) {
-        for (int i=master_index; i < 3; i++) {
-            if (is_led_on(user_data, i)) {
-                return i + 1;
-            }
-        }
-    }
-
-    return 0;
-}
+//static uint8_t get_led_index_slave(visualizer_user_data_t* user_data) {
+//    uint8_t master_index = get_led_index_master(user_data);
+//    if (master_index!=0) {
+//        for (int i=master_index; i < 3; i++) {
+//            if (is_led_on(user_data, i)) {
+//                return i + 1;
+//            }
+//        }
+//    }
+//
+//    return 0;
+//}
 
 static uint8_t get_secondary_led_index(visualizer_user_data_t* user_data) {
     if (is_led_on(user_data, 0) &&
@@ -182,9 +182,12 @@ static void update_emulated_leds(visualizer_state_t* state, visualizer_keyboard_
         old_index = get_led_index_master(user_data_old);
     }
     else {
-        new_index = get_led_index_slave(user_data_new);
-        old_index = get_led_index_slave(user_data_old);
+        //new_index = get_led_index_slave(user_data_new);
+        //old_index = get_led_index_slave(user_data_old);
+        new_index = get_led_index_master(user_data_new);
+        old_index = get_led_index_master(user_data_old);
     }
+
     uint8_t new_secondary_index = get_secondary_led_index(user_data_new);
     uint8_t old_secondary_index = get_secondary_led_index(user_data_old);
 
