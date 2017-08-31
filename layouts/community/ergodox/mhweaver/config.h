@@ -4,6 +4,6 @@
 #include QMK_KEYBOARD_CONFIG_H
 
 // config options
-//#define PERMISSIVE_HOLD
+#define PERMISSIVE_HOLD
 
 #endif
