@@ -44,13 +44,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 |      |      |LeftM |       |RightM|        |      |
  *                                 `--------------------'       `----------------------'
  */
-[_COLEMAK] = KEYMAP(  // layer 0 : colemak
+[_COLEMAK] = LAYOUT_ergodox(  // layer 0 : colemak
         // left hand
         KC_EQL,          KC_1,    KC_2,    KC_3,    KC_4,    KC_5, TT(_QWERTY),
         KC_GRV,          KC_Q,    KC_W,    KC_F,    KC_P,    KC_B, KC_LBRC,
         KC_BSPC,         KC_A,    KC_R,    KC_S,    KC_T,    KC_G,
         KC_LSPO,         KC_Z,    KC_X,    KC_C,    KC_D,    KC_V, TT(_SYMB),
-          CTL_T(KC_ESC), OSM(MOD_LGUI), KC_LALT, KC_LEFT, KC_RGHT,
+          CTL_T(KC_ESC), OSM(MOD_LGUI), OSM(MOD_LALT), KC_LEFT, KC_RGHT,
 							                                           KC_DELT, KC_HOME,
     						                                                    KC_END,
 															   KC_SPC, KC_BSPC, LGUI(KC_W),
@@ -85,7 +85,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 |      |      |      |       |      |        |      |
  *                                 `--------------------'       `----------------------'
  */
-[_QWERTY] = KEYMAP(  // layer 1 : default
+[_QWERTY] = LAYOUT_ergodox(  // layer 1 : default
         // left hand
         KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
         KC_TRNS,   KC_TRNS, KC_TRNS, KC_E,    KC_R,    KC_T,    KC_TRNS,
@@ -127,7 +127,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 `--------------------'       `--------------------'
  */
 // SYMBOLS
-[_SYMB] = KEYMAP(
+[_SYMB] = LAYOUT_ergodox(
        // left hand
        KC_TRNS,KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_TRNS,
        KC_TRNS,KC_TRNS,KC_MS_U,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
