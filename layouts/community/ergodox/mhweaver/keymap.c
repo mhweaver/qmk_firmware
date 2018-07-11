@@ -1,4 +1,4 @@
-#include "ergodox.h"
+#include QMK_KEYBOARD_H
 #include "debug.h"
 #include "action_layer.h"
 #include "version.h"
@@ -15,11 +15,6 @@ enum custom_keycodes {
   EPRM,
   VRSN,
   RGB_SLD
-};
-
-enum tapdance_ids {
-	TD_NOOP_ENTER = 0,
-	TD_ENTER_NOOP
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -192,15 +187,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 const uint16_t PROGMEM fn_actions[] = {
-    [1] = ACTION_LAYER_TAP_TOGGLE(SYMB)                // FN1 - Momentary Layer 1 (Symbols)
-};
-
-//Tap Dance Definitions
-qk_tap_dance_action_t tap_dance_actions[] = {
-  //Tap once for Esc, twice for Caps Lock
-  [TD_ENTER_NOOP] = ACTION_TAP_DANCE_DOUBLE(KC_ENT, KC_NO),
-  [TD_NOOP_ENTER] = ACTION_TAP_DANCE_DOUBLE(KC_NO, KC_ENT),
-// Other declarations would go here, separated by commas, if you have them
+    [1] = ACTION_LAYER_TAP_TOGGLE(_SYMB)                // FN1 - Momentary Layer 1 (Symbols)
 };
 
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
