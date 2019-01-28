@@ -53,7 +53,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
              TG(_PLOVER), KC_6, KC_7, KC_8,    KC_9,   KC_0,     KC_MINS,
              KC_RBRC,     KC_J, KC_L, KC_U,    KC_Y,   KC_SCLN,  KC_BSLS,
                           KC_M, KC_N, KC_E,    KC_I,   KC_O,     KC_QUOT,
-             KC_RPRN,   KC_K, KC_H, KC_COMM, KC_DOT, KC_SLSH,  KC_RSPC,
+             KC_RPRN,   KC_K, KC_H, KC_COMM, KC_DOT, KC_SLSH,  KC_RSFT,
                                    KC_LEFT,KC_DOWN,KC_UP,  KC_RGHT,  KC_RCTL,
              KC_PGUP,          KC_INS,
              KC_PGDN,
