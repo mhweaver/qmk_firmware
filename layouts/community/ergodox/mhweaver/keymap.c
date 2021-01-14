@@ -30,7 +30,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |----------+------+------+------+------+------|   (  |           |  )   |------+------+------+-------+------+--------|
  * | LShift   |   Z  |   X  |   C  |   D  |   V  |      |           |      |   K  |   H  |   ,  |   .   |   /  | RShift |
  * `----------+------+------+------+------+-------------'           `-------------+------+------+-------+------+--------'
- *   |Ctrl/Esc| LGUI | LALT | Left |   L2 |                                       | Left | Down |   Up  | Right|  Ctrl  |
+ *   |Ctrl/Esc| LALT | LGUI | BSPC |   L2 |                                       | Left | Down |   Up  | Right|  Ctrl  |
  *   `------------------------------------'                                       `-------------------------------------'
  *                                        ,-------------.       ,---------------.
  *                                        | Del  | Home |       | PgUp | Insert |
@@ -46,10 +46,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_GRV,          KC_Q,    KC_W,    KC_F,    KC_P,    KC_B, KC_LBRC,
         KC_BSPC,         KC_A,    KC_R,    KC_S,    KC_T,    KC_G,
         KC_LSFT,         KC_Z,    KC_X,    KC_C,    KC_D,    KC_V, KC_LPRN,
-          CTL_T(KC_ESC), OSM(MOD_LGUI), OSM(MOD_LALT), KC_BSPC, TT(_SYMB),
+          CTL_T(KC_ESC), KC_LALT, KC_LGUI, KC_BSPC, TT(_SYMB),
 							                                           KC_DELT, KC_HOME,
     						                                                    KC_END,
-															   KC_SPC, KC_BSPC, LGUI(KC_W),
+															   KC_SPC, KC_BSPC, LCTL(KC_LEFT),
         // right hand
              TG(_PLOVER), KC_6, KC_7, KC_8,    KC_9,   KC_0,     KC_MINS,
              KC_RBRC,     KC_J, KC_L, KC_U,    KC_Y,   KC_SCLN,  KC_BSLS,
@@ -58,7 +58,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                    KC_LEFT,KC_DOWN,KC_UP,  KC_RGHT,  KC_RCTL,
              KC_PGUP,          KC_INS,
              KC_PGDN,
-             LGUI(KC_E),KC_TAB,KC_ENT
+             LCTL(KC_RGHT),KC_TAB,KC_ENT
     ),
 /* Keymap 1: Basic layer
  *
